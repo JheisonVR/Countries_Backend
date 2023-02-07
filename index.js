@@ -20,11 +20,12 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const getCountries = require('./src/controllers/countrieController');
+const port = process.env.PORT || 3001
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, async() => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  server.listen(port, async() => {
+    console.log( `%s listening at ${port}`); // eslint-disable-line no-console
     await getCountries()
   });
 });
